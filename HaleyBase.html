@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
 <head>
@@ -6,85 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - Brand</title>
     <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic&amp;display=swap">
     <link rel="stylesheet" href="/static/assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="/static/assets/css/styles.min.css">
 </head>
 
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="57">
     <nav class="navbar navbar-expand-md bg-body py-3">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span>Team
-                    Time</span></a><button data-bs-toggle="collapse" class="navbar-toggler"
-                data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
-                    class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span>Team Time</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
-                </ul><button class="btn btn-primary" type="button">Login</button><button class="btn btn-primary"
-                    type="button">create account</button>
+                    <a href="{{ url_for('login') }}">
+                        <button class="btn btn-primary" type="button" style="margin: 3px;" >Login</button></a>
+                    <a href="{{ url_for('CreateEvent') }}">
+                        <button class="btn btn-primary" type="button"style="margin: 3px;" >Event Management</button></a>
+                                            <!-- Add Allie Button -->
+                    <a href="{{ url_for('addResponse') }}">    
+                        <button class="btn btn-primary" type="button" style="margin: 3px;" >Response Management</button></a>
             </div>
         </div>
     </nav>
-    <section class="position-relative py-4 py-xl-5">
-        <nav class="navbar navbar-expand-md bg-body py-3" style="transform: translateY(-39px);">
-            <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span
-                        class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"
-                        style="transform: translateX(21px);"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
-                            height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-calendar-week-fill">
-                            <path
-                                d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM9.5 7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm3 0h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zM2 10.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z">
-                            </path>
-                        </svg></span><span
-                        style="color: rgb(13,110,253);transform: translateX(21px);">TeamTime</span></a><button
-                    data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span
-                        class="visually-hidden">Toggle navigation</span><span
-                        class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navcol-3">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item"><a class="nav-link active" href="/addResponse"
-                                style="transform: translateX(-84px);color: rgb(13,110,253);font-size: 12px;">Add
-                                Responses</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/modifyResponse"
-                                style="transform: translateX(-54px);color: rgb(13,110,253);font-size: 12px;">Modify
-                                Responses</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/deleteResponse"
-                                style="transform: translateX(-24px);color: rgb(13,110,253);font-size: 12px;">Delete
-                                Responses</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/searchResponse"
-                                style="transform: translateX(-9px);color: rgb(13,110,253);font-size: 12px;">Search
-                                for
-                                Responses</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/visualizeResponse"
-                                style="transform: translateX(21px);color: rgb(13,110,253);font-size: 12px;">Visualize
-                                Responses</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </section>
-
     {% block content %}{% endblock content %}
-
-
     <section id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 text-center mx-auto">
                     <h2 class="section-heading">Let's Get In Touch!</h2>
                     <hr class="my-4">
-                    <p class="mb-5">To report bugs, errors, or learn more about our platform feel free to reach out
-                        to
-                        us below!</p>
+                    <p class="mb-5">To report bugs, errors, or learn more about our platform feel free to reach out to us below!</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-xxl-12 text-center mx-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact"
-                        data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
+                <div class="col-lg-4 col-xxl-12 text-center me-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
                     <p><a href="mailto:your-email@your-domain.com">TeamTimeSupport@Gmail.com</a></p>
                 </div>
             </div>
