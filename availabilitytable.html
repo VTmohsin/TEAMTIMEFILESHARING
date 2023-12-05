@@ -1,0 +1,25 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Email:</th>
+            <th>Schedule ID:</th>
+            <th>Response ID:</th>
+            <th>Availability:</th>
+            <th>Time Slot:</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% if emails %}
+            {% for email in emails %}
+                <tr>
+                    <td>{{ email ['email'] }}</td>
+                    <td>{{ email ['schedule_id'] }}</td>
+                    <td>{{ email ['response_id'] }}</td>
+                    <td>{{ email ['availability'] }}</td>
+                    <td>{{ email ['time_slot'] }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table>

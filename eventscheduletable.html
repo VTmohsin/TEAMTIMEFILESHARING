@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            <th>esid</th><th>eid</th><th>startingdate</th><th>endingdate</th><th>responsedeadline</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if eventschedule %}
+            {% for event in eventschedule %}
+                <tr><td>{{ event ['esid'] }}</td></tr>
+                <tr><td>{{ event ['eid'] }}</td></tr>
+                <tr><td>{{ event ['startingdate'] }}</td></tr>
+                <tr><td>{{ event ['endingdate'] }}</td></tr>
+                <tr><td>{{ event ['responsedeadline'] }}</td></tr>
+
+            {% endfor %}
+        {% endif %}
+    </tbody>
+
+</table>

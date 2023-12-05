@@ -1,0 +1,74 @@
+{% extends "layouts/alliebase.html" %}
+
+{% block content %}
+
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", init);
+    function init() {
+        var x = document.getElementById("button");
+        x.addEventListener("click", loadTable);
+
+    }
+
+    function loadTable() {
+        //ajax request
+        var selectedESID = document.getElementById("esid").value
+        var selectedrid = document.getElementById("responsedeadline").value
+        var startdate = document.getElementById("startingdate").value
+        var enddate = document.getElementById("endingdate").value
+        fetch("/updatetask?esid=" + selectedESID + "&responsedeadline=" + selectedrid + "&startingdate=" + startdate + "&endingdate=" + enddate, {
+            method: "POST" //GET
+        }).then(response => response.text()).then(data => {
+            document.getElementById("placeholder").innerHTML = data;
+        }).catch(error => {
+            console.error(error);
+        })
+    }
+</script> -->
+<form method="post" action="{{url_for('updateTask')}}"
+<section class="position-relative py-4 py-xl-5">
+    <div class="container position-relative">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                <div class="card mb-5">
+                    <div class="card-body p-sm-5">
+                        <h4 class="text-center mb-4">Modify Scheduling Task</h4>
+
+                        <div class="mb-3"><label for="">Select an Event Schedule ID:<select name="esid" id="esid"
+                                    data-bs-theme="light">
+                                    <option value=""></option>
+                                    {% if eventschedule %}
+                                    {% for event in eventschedule %}
+                                    <option value="{{ event['esid'] }}">{{ event['esid'] }}</option>
+                                    {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </label><br><label class="form-label">Response Deadline:</label><input class="form-control"
+                                type="date" name="responsedeadline" id="responsedeadline">
+                            <label class="form-label">Starting Date: </label><input class="form-control" type="date"
+                                name="startingdate" id="startingdate">
+                            <label class="form-label">Ending Date:</label><input class="form-control" type="date"
+                                name="endingdate" id="endingdate">
+
+                            <div class="btn-group" role="group"></div><button class="btn btn-primary d-block w-100"
+                                type="submit" id="button">Submit Modified Task</button>
+                        </div>
+                        <div id="placeholder"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+</section>
+{% endblock content %}
