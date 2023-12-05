@@ -1,0 +1,80 @@
+{% extends "layouts/nikubase.html" %}
+
+{% block content %}
+
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4">Modify Profile</h2>
+      
+      
+    <form id="profileForm" action="http://localhost:5000/update_profile" method="post">
+      <div class="form-group">
+        <label for="profilePicture" class="form-label">Profile Picture</label>
+        <input type="file" class="form-control" id="profile_pic" name="propic" value="{{ppic}}">
+      </div>
+      <div class="form-group">
+        <label for="Username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="un" value="{{uname}}" required>
+      </div>
+      <div class="form-group">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="user_pass" name="prd" value="{{pword}}" required>
+      </div>
+      <div class="form-group">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" required name="nm" value="{{n}}">
+      </div>
+      <div class="form-group">
+        <label for="gender" class="form-label">Gender</label>
+        <select class="form-select" id="gender" name="ge" value="{{gen}}">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="age" class="form-label">Age</label>
+        <input type="number" class="form-control" id="age" required min="0" max="150" name="ag" value="{{a}}">
+      </div>
+      <div class="form-group">
+        <label for="pronouns" class="form-label">Pronouns</label>
+        <input type="text" class="form-control" id="pronouns" name="prn" value="{{pnouns}}">
+      </div>
+      <div class="form-group">
+        <label for="contactInfo" class="form-label">Contact Information</label>
+        <input type="text" class="form-control" id="email" required name="ema" value="{{e}}">
+      </div>
+      <div class="form-group">
+        <label for="biography" class="form-label">Biography</label>
+        <textarea class="form-control" id="bio" rows="3" maxlength="500" name="bi" value="{{b}}" ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="userLinks" class="form-label">User Links</label>
+        <input type="text" class="form-control" id="links" name="li" value="{{l}}">
+      </div>
+      <div class="text-center text-lg-start mt-4 pt-2">
+        <a href="{{ url_for('visualization') }}" class="btn btn-primary">Save Profile</a>
+    </div>
+    
+    </form>
+
+    <div class="mt-3">
+      <button class="btn btn-danger delete-profile-btn" id="delete" onclick="confirmDelete()">Delete Profile</button>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+  </div>
+
+
+
+
+
+{% endblock content %}

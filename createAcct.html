@@ -1,0 +1,82 @@
+{% extends "layouts/nikubase.html" %}
+
+{% block content %}
+
+
+<form method="post" action="{{ url_for('submit_form') }}">
+<body><div class="card">
+  <div class="text-center">
+    <h3>Create an account</h3>
+    <span class="abt">Already have an account? <a href="{{ url_for('login') }}">Sign In</a></span>
+  </div>
+  <div class="form mt-3">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inputbox">
+          <input type="text" class="form-control" placeholder="Username" name="un" value="{{uname}}">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inputbox">
+          <input type="password" class="form-control" placeholder="Password" name="pw" value="{{pword}}">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="inputbox">
+          <input type="text" placeholder="First name" class="form-control" name="fn" value="{{firstname}}">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="inputbox">
+          <input type="text" placeholder="Last name" class="form-control" name="ln" value="{{lastname}}">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inputbox">
+          <input type="text" class="form-control" placeholder="Email" name="em" value="{{e}}">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inputbox">
+          <input type="number" class="form-control" placeholder="Phone number" name="ph" value="{{pnumber}}">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-4 proceed">
+    <input type="submit" name="submit" value="Create Account">
+  </div>
+  
+  <div class="mt-1">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault"> I have read and agree to the <a href="#">Terms of service</a> </label>
+    </div>
+  </div>
+</div>
+</form>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+
+</body>
+
+{% endblock content %}
+
+

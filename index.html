@@ -1,0 +1,119 @@
+{% extends "layouts/nikubase.html" %}
+
+{% block title %} My Store - Home {% endblock title %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<header class="text-center text-white d-flex masthead" style="background-image:url('/static/assets/img/header.jpg');">
+    <div class="container my-auto">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h1 class="text-uppercase"><strong>Welcome to team time</strong></h1>
+                <hr>
+            </div>
+        </div>
+        <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5">Team Time is your new all in one scheduling platform. From creating events, finding a common time to meet, sending out invites, collecting RSPV's, to viewing guest insights.<br>Create an account today and start removing the hassle from your meeting!</p><a class="btn btn-primary btn-xl" role="button" href="login">Login</a><a class="btn btn-primary btn-xl" role="button" href="submit-form">Create Account</a>
+        </div>
+    </div>
+</header>
+<section id="about" class="bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="col offset-lg-8 text-center mx-auto">
+                <h2 class="text-white section-heading">We've got what you need!</h2>
+                <hr class="light my-4">
+                <p class="text-faded mb-4">Welcome to our seamless scheduling platform, where planning events and meetings becomes effortlessly efficient. Streamline your coordination with ease, ensuring everyone's availability aligns seamlessly.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Why Team Time?</h2>
+                <hr class="my-4">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3 text-center">
+                <div class="mx-auto service-box mt-5"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-building-store fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <line x1="3" y1="21" x2="21" y2="21"></line>
+                        <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4"></path>
+                        <line x1="5" y1="21" x2="5" y2="10.85"></line>
+                        <line x1="19" y1="21" x2="19" y2="10.85"></line>
+                        <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4"></path>
+                    </svg>
+                    <h3 class="mb-3">All in One Place</h3>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center">
+                <div class="mx-auto service-box mt-5"><i class="fa fa-paper-plane fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
+                    <h3 class="mb-3">Quick and Easy to get going</h3>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center">
+                <div class="mx-auto service-box mt-5"><i class="fa fa-newspaper-o fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="400" data-aos-once="true"></i>
+                    <h3 class="mb-3">In-depth insights</h3>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center">
+                <div class="mx-auto service-box mt-5"><i class="fa fa-heart fa-4x text-primary mb-3 sr-icons" data-aos="fade" data-aos-duration="200" data-aos-delay="600" data-aos-once="true"></i>
+                    <h3 class="mb-3">Your Guest will love it</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="text-white bg-dark">
+    <section class="bg-light" id="team">
+        <div class="container py-4 py-xl-5">
+            <div class="row mb-4 mb-lg-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 id="MeetThe-Team">Our Team</h2>
+                </div>
+            </div>
+            <div class="row gy-4 row-cols-2 row-cols-md-4">
+                <div class="col">
+                    <div class="card border-0 shadow-none">
+                        <div class="card-body text-center d-flex flex-column align-items-center p-0"><img class="rounded-circle mb-3 fit-cover" width="130" height="130" src="/static/assets/img/team/Niku_Linkedin.jpg">
+                            <h5 class="fw-bold text-primary card-title mb-0">Niku Shabazi&nbsp;&nbsp;</h5>
+                            <p class="text-muted card-text mb-2">Founder</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-0 shadow-none">
+                        <div class="card-body text-center d-flex flex-column align-items-center p-0"><img class="rounded-circle mb-3 fit-cover" width="130" height="130" src="/static/assets/img/team/Haley_Linkedin.jpg">
+                            <h5 class="fw-bold text-primary card-title mb-0"><strong>Haley McCormick&nbsp;&nbsp;</strong></h5>
+                            <p class="text-muted card-text mb-2">Founder</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-0 shadow-none">
+                        <div class="card-body text-center d-flex flex-column align-items-center p-0"><img class="rounded-circle mb-3 fit-cover" width="130" height="130" src="/static/assets/img/team/Allie_Linkedin.jpg">
+                            <h5 class="fw-bold text-primary card-title mb-0">Allie Champion</h5>
+                            <p class="text-muted card-text mb-2">Founder</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-0 shadow-none">
+                        <div class="card-body text-center d-flex flex-column align-items-center p-0"><img class="rounded-circle mb-3 fit-cover" width="130" height="130" src="/static/assets/img/Mohsin%20Professional%20Headshot.jpg">
+                            <h5 class="fw-bold text-primary card-title mb-0">Mohsin Raza</h5>
+                            <p class="text-muted card-text mb-2">Founder</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock content %}

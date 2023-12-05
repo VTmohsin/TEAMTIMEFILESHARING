@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic&amp;display=swap">
+    <link rel="stylesheet" href="/static/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assets/css/styles.min.css">
+</head>
+
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="57">
+    <nav class="navbar navbar-expand-md bg-body py-3">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span>Team Time</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                </ul>
+                <a href="{{ url_for('login') }}">
+                    <button class="btn btn-primary" type="button">Login</button></a>
+                <a href="{{ url_for('submit_form') }}">    
+                    <button class="btn btn-primary" type="button">create account</button></a>
+            </div>
+        </div>
+    </nav>
+			
+			{% block content %}{% endblock content %}
+
+            <section id="contact">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 text-center mx-auto">
+                            <h2 class="section-heading">Let's Get In Touch!</h2>
+                            <hr class="my-4">
+                            <p class="mb-5">To report bugs, errors, or learn more about our platform feel free to reach out to us below!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-xxl-12 text-center me-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
+                            <p><a href="mailto:your-email@your-domain.com">TeamTimeSupport@Gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+            <script src="assets/js/script.min.js"></script>
+        </body>
+        
+        </html>
