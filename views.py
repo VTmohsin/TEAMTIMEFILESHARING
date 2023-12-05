@@ -1,146 +1,211 @@
-from flask import Flask, render_template, request, redirect, json, jsonify, session, flash
-from app import app, dbConn, cursor
+# -*- encoding: utf-8 -*-
+"""
+Copyright (c) 2019 - present AppSeed.us
+"""
 
+# Flask modules
+from flask   import render_template, request, redirect, url_for, flash, json
+from jinja2  import TemplateNotFound
 
+# App modules
+from app import app,dbConn,cursor
+# from app.models import Profiles
+
+# App main route + generic routing
 @app.route('/')
 def index():
     return render_template('index.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
-@app.route('/visualization')
-def visualization():
-     sql = "select count(username) from acctcreation"
-     cursor.execute(sql)
-     result = cursor.fetchall()
-     chartData = json.dumps(result)
-     return render_template('viz.html', chartData = chartData)
+# Add Response
 
-@app.route('/login', methods=['GET', 'POST'])  #UP TO DATE
-def login():
-    if request.method == 'POST':
-        data = request.json
-        #get user input values from the form
-        email = request.form.get("mail")
-        password = request.form.get("p")
-        errors = []
+@app.route('/addResponse')
+def addRes():
+    return render_template('addResponse.html')
 
+@app.route('/added', methods=['POST', 'GET'])
+def addResponseSubmit():
+    error = False
 
-        # Validate form entries
-        if not email:
-            errors.append('Email is required.')
-        if not password:
-            errors.append('Password is required.')
-        
-        if not errors:
-            
-                sql = "SELECT user_pass FROM acctcreation WHERE email = %s"
-                cursor.execute(sql, (email))
-                result = cursor.fetchone()
+    # get form submitted data
+    sid = request.form.get('scheduleID')
+    rid = request.form.get('responseID')
+    e = request.form.get('email')
+    av = request.form.get('availability')
+    ts = request.form.get('timeSlot')
 
-                if errors:
-                    for error in errors:
-                        flash(error, 'error')
-
-        return render_template('viz.html', pword = password, e = email)
+    if not sid:
+            error = True
+            flash("Please provide a Schedule ID number.")
+    else:
+        sid = int(sid)
+        if sid<0:
+            error = True
+            flash("The Schedule ID entered must be greater than 0.")
     
-    return render_template('login.html')
-
-
-@app.route('/submit-form', methods=['GET', 'POST'])
-def submit_form():
-    if request.method == 'POST':
-        # Get user input values from the form
-        username = request.form.get("un")
-        password = request.form.get("pw")
-        fname = request.form.get("fn")
-        lname = request.form.get("ln")
-        email = request.form.get("em")
-        phone = request.form.get("ph")
-        error = False
-
-
-
-        # Validate form entries
-        if not username:
+    if not rid:
             error = True
-            flash('Username is required.')
-        if not password:
+            flash("Please provide a Response ID number.")
+    else:
+        rid = int(rid)
+        if rid<0:
             error = True
-            flash('Password is required.')
-        if not fname:
-            error = True
-            flash('First name is required.')
-        if not lname:
-            error = True
-            flash('Last name is required.')
-        if not email:
-            error = True
-            flash('Email is required.')
-        if not phone:
-            error = True
-            flash('Phone is required.')
-        else:
-            try:
-                phone = int(phone)
-                if phone < 1:
-                    error.append('Phone number must be greater than or equal to 0.')
-            except ValueError:
-                error.append('Phone number must be a valid integer.')
+            flash("The Response ID entered must be greater than 0.")
 
-        # Check for errors
-        if error:
-            return render_template('createAcct.html')
+    if not e:
+            error = True
+            flash("Please provide an email.")
+    
+    if not av:
+            error = True
+            flash("Please provide your availability.")
 
-        # update database
-        if not error:
-            sql = "INSERT INTO acctcreation (username, user_pass, first_name, last_name, email, phone) VALUES (%s, %s, %s, %s, %s, %s)"
-            cursor.execute(sql, [username, password, fname, lname, email, phone])
+    if not ts:
+            error = True
+            flash("Please select a time slot.")
+
+    #sql statements
+    if not error:
+        sql = "select count(*) as matchcount from responsemanagement where response_ID=%s"
+        cursor.execute(sql, rid)
+        result = cursor.fetchone()
+        if result['matchcount'] == 0:
+            sql = "insert into responsemanagement(email, schedule_ID, response_ID, availability, time_slot) values(%s, %s, %s, %s, %s)"
+            cursor.execute(sql, [e, sid, rid, av, ts])
             dbConn.commit()
+            flash("A new response has been added to the event.")
+    
+    #render the web page
+    return render_template('addResponse.html', userEmail=e, schedID=sid, resID=rid, avail=av, time=ts)
 
-        flash('Account Created successfully!', 'success')
-        return render_template('login.html', uname = username , pword = password, firstname = fname, lastname = lname, e = email, pnumber = phone)  # Redirect to the login page after successful account creation
+# Modify Response
 
-    # Render form for GET request
-            
-    return render_template('createAcct.html') # ...(html value) = ...(var))
+@app.route('/modifyResponse')
+def modifyRes():
+    return render_template('modifyResponse.html')
+
+@app.route('/modified', methods=['POST', 'GET'])
+def modifyResponseSubmit():
+    error = False
+
+    # get form submitted data
+    sid = request.form.get('scheduleID')
+    rid = request.form.get('responseID')
+    e = request.form.get('email')
+    av = request.form.get('availability')
+    ts = request.form.get('timeSlot')
+
+    if not sid:
+            error = True
+            flash("Please provide a Schedule ID number.")
+    else:
+        sid = int(sid)
+        if sid<0:
+            error = True
+            flash("The Schedule ID entered must be greater than 0.")
+    
+    if not rid:
+            error = True
+            flash("Please provide a Response ID number.")
+    else:
+        rid = int(rid)
+        if rid<0:
+            error = True
+            flash("The Response ID entered must be greater than 0.")
+
+    if not e:
+            error = True
+            flash("Please provide an email.")
+    
+    if not av:
+            error = True
+            flash("Please provide your availability.")
+
+    if not ts:
+            error = True
+            flash("Please select a time slot.")
+    
+    # sql statements
+    sql = "update responsemanagement set email=%s, schedule_ID=%s, response_ID=%s, availability=%s, time_slot=%s where response_ID=%s"
+    cursor.execute(sql, [e, sid, rid, av, ts, rid])
+    dbConn.commit()
+    flash("The response has been updated.")
+
+    #render the web page
+    return render_template('modifyResponse.html', userEmail=e, schedID=sid, resID=rid, avail=av, time=ts)
 
 
+# Delete Response
+@app.route('/deleteResponse')
+def deleteRes():
+    return render_template('deleteResponse.html')
 
-@app.route('/update_profile', methods=['GET','POST'])
-def update_profile():
-    if request.method == 'POST':
-        # Check if Delete Account button was clicked
-        if 'delete' in request.form:
-            username = request.form.get('un')
-            sql = "DELETE FROM userprofile WHERE username = %s"
-            cursor.execute(sql, [username])
-            dbConn.commit()
+@app.route('/deleted', methods=['POST', 'GET'])
+def deleteResponseSubmit():
+    error = False
 
-            flash('Profile deleted successfully!', 'info')
-            return render_template('createAcct.html', uname = username)
+    # get form submitted data
 
-        # Otherwise, proceed with profile update
-        profile_pic = request.args.get("propic")
-        username = request.args.get("un")
-        password = request.args.get("prd")
-        name = request.args.get("nm")
-        gender = request.args.get("ge")
-        age = request.args.get("ag")
-        pronouns = request.args.get("prn")
-        email = request.args.get("ema")
-        bio = request.args.get("bi")
-        links = request.args.get("li")
+    rid = request.form.get('responseID')
+    e = request.form.get('email')
 
-        sql = """
-        UPDATE userprofile SET profile_pic = %s, username = %s, user_pass = %s, name = %s, 
-                            gender = %s, age = %s, pronouns = %s, 
-                            email = %s, bio = %s, links = %s
-        WHERE username = %s 
-        """
-        cursor.execute(sql, [profile_pic, username, password, name, gender, age, pronouns, email, bio, links]) 
+    if not rid:
+            error = True
+            flash("Please provide a Response ID number.")
+    else:
+        rid = int(rid)
+        if rid<0:
+            error = True
+            flash("The Response ID entered must be greater than 0.")
+
+    if not e:
+            error = True
+            flash("Please provide an email.")
+
+    # sql statements
+    if not error:
+        sql = "delete from responsemanagement where response_ID=%s"
+        cursor.execute(sql, [rid])
         dbConn.commit()
+        flash("The response has been deleted.")
 
-        flash('Profile updated successfully!', 'success')
-        return render_template('modify.html', uname = username , pword = password, e = email, ppic = profile_pic, n = name, gen = gender, a = age, pnouns = pronouns, b = bio, l = links)
+    #render the web page
+    return render_template('deleteResponse.html', userEmail=e, resID=rid)
 
-    return render_template('modify.html')
+
+# Search for  Response
+@app.route('/searchResponse')
+def searchRes():
+    sql = "select time_slot from responsemanagement"
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return render_template('searchResponse.html', timeSlots=result)
+
+@app.route('/searchTable', methods=['GET'])
+def Table():
+    timeSlot = request.args.get('timeSlot')
+    sql = "select * from responsemanagement where time_slot=%s"
+    cursor.execute(sql, timeSlot)
+    result = cursor.fetchall()
+    print(timeSlot)
+
+    return render_template("timeTable.html", timeSlots=result)
+
+# Visualize Response 
+@app.route('/visualizeResponse')
+def visRes():
+     return render_template("selectVisualize.html")
+
+@app.route('/visualizeRes', methods=['POST', 'GET'])
+def visualizeResponseSubmit():
+     
+     av = request.form.get('availability')
+
+     sql = "select availability as label, schedule_id as value from responsemanagement where availability=%s"
+     cursor.execute(sql,[av])
+     result = cursor.fetchall()
+     result = json.dumps(result)
+     return render_template("visualizeResponse.html", avail=av, chartData=result)

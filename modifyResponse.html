@@ -1,0 +1,64 @@
+{% extends "layouts/HaleyBase.html" %}
+
+{% block title %} Add Response {% endblock title %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<Form method="post" action="{{url_for('modifyResponseSubmit')}}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-5"
+                style="width: 500px;height: 375px;border-style: solid;border-color: rgb(13,110,253);transform: translateX(335px) translateY(-10px);">
+                <p style="transform: translateX(20px);color: rgb(13,110,253);font-size: 20px;">Modify a Response to
+                    a
+                    Scheduled Task</p>
+                <input type="number" name="scheduleID" value="{{schedID}}" id="inputScheduleID"
+                    style="transform: translateX(150px) translateY(-3px);width: 250px;height: 24px;border: 0.75px solid rgb(13,110,253);"
+                    placeholder="1">
+                <input type="number" name="responseID" value="{{resID}}" id="inputResponseID"
+                    style="transform: translateX(150px) translateY(32px);width: 250px;height: 25px;border: 0.75px solid rgb(13,110,253);"
+                    placeholder="1">
+                <input type="email" name="email" value="{{userEmail}}" id="inputEmail"
+                    style="transform: translateX(150px) translateY(74px);width: 250px;height: 25px;border: 0.75px solid rgb(13,110,253);"
+                    placeholder="user@123.com">
+                <p
+                    style="width: 200px;height: 25px;color: rgb(255,99,12);font-size: 15px;transform: translateX(0px) translateY(-77px);">
+                    Enter Schedule ID:</p>
+                <p
+                    style="width: 200px;height: 25px;color: rgb(255,99,12);font-size: 15px;transform: translateY(-59px);">
+                    Enter Response ID:</p>
+                <p
+                    style="width: 200px;height: 25px;color: rgb(255,99,12);font-size: 15px;transform: translateX(0px) translateY(-32px);">
+                    Enter Email:</p>
+                <input type="text" name="availability" value="{{avail}}" id="inputAvailability"
+                    style="transform: translateX(150px) translateY(-14px);width: 250px;height: 25px;border: 0.75px solid rgb(13,110,253);"
+                    placeholder="&quot;Yes&quot; or &quot;No&quot;">
+                <p
+                    style="width: 200px;height: 25px;color: rgb(255,99,12);font-size: 15px;transform: translateY(-39px);">
+                    Availability:</p>
+                <input type="time" name="timeSlot" value="{{time}}" id="inputTimeSlot"
+                    style="transform: translateX(150px) translateY(-16px);width: 250px;height: 25px;border: 0.75px solid rgb(13,110,253);">
+                <button class="btn btn-primary" type="submit"
+                    style="width: 75px;height: 24px;transform: translateX(-49px) translateY(29px);font-size: 10px;text-align: center;">Modify</button>
+                <p
+                    style="width: 200px;height: 25px;color: rgb(255,99,12);font-size: 15px;transform: translateY(-42px);">
+                    Time Slot:</p>
+            </div>
+        </div>
+    </div>
+</Form>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+{% endblock content %}

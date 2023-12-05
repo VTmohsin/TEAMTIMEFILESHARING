@@ -1,0 +1,48 @@
+{% extends "layouts/HaleyBase.html" %}
+
+{% block title %} Add Response {% endblock title %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<Form method="post" action="{{url_for('deleteResponseSubmit')}}">
+    <div class="container"
+        style="width: 500px;height: 300px;border-style: solid;border-color: rgb(13,110,253);transform: translateY(0px);">
+        <div class="row">
+            <div class="col-md-12">
+                <p style="color: rgb(13,110,253);font-size: 20px;transform: translateX(70px);">Delete a Response to
+                    a Scheduled Task</p>
+            </div>
+        </div>
+        <input type="number" name="responseID" value="{{resID}}" id="inputResponseID"
+            style="width: 250px;height: 25px;border: 0.75px solid rgb(13,110,253);transform: translateX(127px) translateY(29px);"
+            placeholder="1">
+        <button class="btn btn-primary" type="submit"
+            style="width: 150px;height: 25px;font-size: 10px;transform: translateX(-90px) translateY(167px);">Confirm
+            Deletion</button>
+        <p
+            style="width: 200px;height: 25px;color: rgb(255,99,12);font-size: 15px;transform: translateX(176px) translateY(-29px);">
+            Enter Response ID:</p>
+        <p
+            style="width: 300px;height: 25px;color: rgb(255,99,12);font-size: 15px;transform: translateX(125px) translateY(20px);">
+            Enter Email Associated with Response:</p>
+        <input type="email" placeholder="user@123.com" name="email" value="{{userEmail}}" id="inputEmail"
+            style="width: 250px;height: 25px;border: 0.75px solid rgb(13,110,253);transform: translateX(127px) translateY(10px);">
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    </body>
+</Form>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+{% endblock content %}

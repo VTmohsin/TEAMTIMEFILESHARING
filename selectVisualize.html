@@ -1,0 +1,28 @@
+{% extends "layouts/HaleyBase.html" %}
+
+{% block title %} Add Response {% endblock title %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<Form method="post" action="{{url_for('visualizeResponseSubmit')}}">
+    <div class="container"
+        style="width: 500px;height: 200px;border-style: solid;border-color: rgb(13,110,253);transform: translateX(-10px) translateY(-10px);">
+        <div class="row">
+            <div class="col-md-12" style="transform: translateX(59px);">
+                <p style="color: rgb(13,110,253);font-size: 20px;transform: translateX(36px);">Visualize Responses
+                    by Availability</p>
+            </div>
+        </div>
+        <p style="color: rgb(255,99,12);font-size: 15px;transform: translateX(206px) translateY(0px);">Availability:
+        </p>
+        <input type="text" name="availability" value="{{avail}}" id="inputAvailability"
+            style="width: 250px;height: 25px;border: 0.75px solid rgb(13,110,253);transform: translateX(108px) translateY(0px);text-align: center;"
+            placeholder="&quot;Yes&quot; or &quot;No&quot;">
+        <button class="btn btn-primary" type="submit"
+            style="width: 75px;height: 24px;font-size: 10px;transform: translateX(-48px) translateY(69px);">Visualize</button>
+    </div>
+</Form>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+{% endblock content %}

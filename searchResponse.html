@@ -1,0 +1,57 @@
+{% extends "layouts/HaleyBase.html" %}
+
+{% block title %} Add Response {% endblock title %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", init);
+    function init(){
+        var x = document.getElementById("timeSlot");
+        x.addEventListener("change", loadTable);
+    }
+
+    function loadTable(){
+        //ajax request
+        var selectedTimeSlot = document.getElementById("timeSlot").value;
+        fetch("/searchTable?timeSlot="+selectedTimeSlot,{
+            method: "GET"
+        }).then(response => response.text()).then(data => {
+            document.getElementById("placeholder").innerHTML = data;
+        }).catch(error => {
+            console.error(error);
+        })
+    }
+</script>
+    <div class="container"
+        style="width: 500px;height: 150px;border-style: solid;border-color: rgb(13,110,253);transform: translateX(29px) translateY(10px) translateZ(66px);">
+        <div class="row">
+            <div class="col-md-12">
+                <p style="color: rgb(13,110,253);font-size: 20px;transform: translateX(52px);">Search for Responses by
+                    Time-Slot</p>
+            </div>
+        </div>
+        <p style="color: rgb(255,99,12);font-size: 15px;transform: translateX(100px) translateY(10px);">Choose a Specific
+            Time-Slot to Begin:</p>
+        <select name="timeSlot" id="timeSlot"
+            style="width: 250px;height: 25px;border: 0.75px solid rgb(13,110,253);transform: translateX(108px) translateY(20px);">
+            <option value=""></option>
+            {% if timeSlots %}
+                {% for timeSlot in timeSlots %}
+                    <option value="{{ timeSlot['time_slot'] }}">{{ timeSlot['time_slot'] }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+    <div class="container" 
+        style="width: 900px;height: 150px;border-style: solid;border-color: rgb(13,110,253); transform: translateX(20px) translateY(50px)">
+        <div id="placeholder"></div>
+    </div>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+{% endblock content %}

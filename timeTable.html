@@ -1,0 +1,24 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Email:</th>
+            <th>Schedule ID:</th>
+            <th>Response ID:</th>
+            <th>Availability:</th>
+            <th>Time-Slot:</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if timeSlots %}
+            {% for timeSlot in timeSlots %}
+                <tr>
+                    <td>{{ timeSlot['email'] }}</td>
+                    <td>{{ timeSlot['schedule_id'] }}</td>
+                    <td>{{ timeSlot['response_id'] }}</td>
+                    <td>{{ timeSlot['availability'] }}</td>
+                    <td>{{ timeSlot['time_slot'] }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
